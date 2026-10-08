@@ -30,6 +30,9 @@ python cnki_citation.py cite 知识图谱 --field AU --sort cited
 
 # 已有导出加密 ID 时直接取引文
 python cnki_citation.py ids <exportId1> <exportId2>
+
+# 页码范围：从第 2 页起取 1 页再导出引文
+python cnki_citation.py cite 大语言模型 --start-page 2 --pages 1
 ```
 
 退出码：0 成功；2 验证码未通过；3 无结果；1 其他错误。

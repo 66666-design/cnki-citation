@@ -46,6 +46,8 @@ def main():
     p_c.add_argument("--top", type=int, default=0)
     p_c.add_argument("--field", choices=list(FIELD_LABEL), default="SU")
     p_c.add_argument("--sort", choices=list(SORT_CODES), default="time")
+    p_c.add_argument("--start-page", type=int, default=1, dest="start_page",
+                     help="从第几页开始取（1 起）；与 --pages 组合定义页码范围")
     p_c.add_argument("-o", "--out", default="", help="引文输出文件，默认 <关键词>-引文.txt")
     p_c.add_argument("--format", choices=["gbt", "all"], default="gbt")
     p_c.add_argument("--json", default="")
@@ -77,7 +79,7 @@ def main():
             cnki.save_state()
             return 0
 
-        rows = cnki.search(args.keyword, args.pages, args.field, args.sort)
+        rows = cnki.search(args.keyword, args.pages, args.field, args.sort, args.start_page)
         if not rows:
             print("搜索结果为空（0 条）。", file=sys.stderr)
             return 3
